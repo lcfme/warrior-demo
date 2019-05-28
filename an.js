@@ -45,7 +45,7 @@ updator.update(this);
 
 module.exports = Component;
 
-},{"./updator":13}],2:[function(require,module,exports){
+},{"./updator":11}],2:[function(require,module,exports){
 "use strict";
 
 var lifycycle = require("./lifycycle");
@@ -333,15 +333,11 @@ module.exports = NativeComponent;
 },{"./forEachProps":7}],4:[function(require,module,exports){
 "use strict";
 
-var PIXI = require('./pixijsUMDShim.js');
-
 exports.createElement = require("./createElement");
 exports.Component = require("./Component");
 exports.render = require("./render");
 
-require("./pixiInjection").inject(PIXI);
-
-},{"./Component":1,"./createElement":6,"./pixiInjection":10,"./pixijsUMDShim.js":11,"./render":12}],5:[function(require,module,exports){
+},{"./Component":1,"./createElement":6,"./render":10}],5:[function(require,module,exports){
 "use strict";
 
 function CallbackQueue() {
@@ -465,29 +461,9 @@ mounted: Cbq()
 },{"./cbq":5}],10:[function(require,module,exports){
 "use strict";
 
-var pixi = null;
-
-exports.inject = function inject(_pixi) {
-pixi = _pixi;
-};
-
-exports.getPixi = function getPixi() {
-return pixi;
-};
-
-},{}],11:[function(require,module,exports){
-"use strict";
-
-module.exports = PIXI;
-
-},{}],12:[function(require,module,exports){
-"use strict";
-
 var instantiateComponent = require("./instantiateComponent");
 
 var lifycycle = require("./lifycycle");
-
-var getPixi = require("./pixiInjection").getPixi;
 
 function render(element, displayContObj) {
 if (displayContObj.__An_Instance__) {
@@ -505,7 +481,7 @@ return pixiObj;
 
 module.exports = render;
 
-},{"./instantiateComponent":8,"./lifycycle":9,"./pixiInjection":10}],13:[function(require,module,exports){
+},{"./instantiateComponent":8,"./lifycycle":9}],11:[function(require,module,exports){
 "use strict";
 
 var dirtyComponents = [];
