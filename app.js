@@ -185,5 +185,44 @@ const pixiApp = new PIXI.Application({
   transparent: true
 });
 
-An.render(An.createElement(Warrior), pixiApp.stage);
+function loadImage(src) {
+  return new Promise((r, j) => {
+    var img = new Image();
+    img.src = src;
+    img.onload = () => {
+      r(img);
+    };
+    img.onerror = err => {
+      j(err);
+    };
+  });
+}
+
+const allRes = [
+  "img/_DIE_000.png",
+  "img/_DIE_001.png",
+  "img/_DIE_002.png",
+  "img/_DIE_003.png",
+  "img/_DIE_004.png",
+  "img/_DIE_005.png",
+  "img/_DIE_006.png",
+  "img/_WALK_000.png",
+  "img/_WALK_001.png",
+  "img/_WALK_002.png",
+  "img/_WALK_003.png",
+  "img/_WALK_004.png",
+  "img/_WALK_005.png",
+  "img/_WALK_006.png"
+];
+
+const loader = PIXI.Loader.shared;
+
+allRes.forEach(k => {
+  loader.add(k, k);
+});
+
+loader.load(() => {
+  An.render(An.createElement(Warrior), pixiApp.stage);
+});
+
 document.body.appendChild(pixiApp.view);
