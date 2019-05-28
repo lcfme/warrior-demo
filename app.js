@@ -42,16 +42,22 @@ class DieAction extends Action {
   }
 }
 
-function createInterval(fn, time) {
-  let t = setInterval(() => {
-    if (fn() === false) {
-      clearInterval(t);
-    }
-  }, time);
-  return () => {
+function __createInterval() {
+  let t;
+  return (fn, time) => {
     clearInterval(t);
+    t = setInterval(() => {
+      if (fn() === false) {
+        clearInterval(t);
+      }
+    }, time);
+    return () => {
+      clearInterval(t);
+    };
   };
 }
+
+const createInterval = __createInterval();
 
 class WalkAction extends Action {
   constructor(inst) {
