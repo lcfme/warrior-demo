@@ -109,7 +109,10 @@ class Warrior extends An.Component {
     const y = e.data.global.y - this._sprit.height / 2;
     const dx = x - this.state.x;
     const dy = y - this.state.y;
-    if (Math.abs(dx) > 200 || Math.abs(dy) > 200) {
+    if (
+      Math.abs(dx) > pixiApp.screen.width ||
+      Math.abs(dy) > pixiApp.screen.width
+    ) {
       if (this.state.currentAction !== this.dieAction) {
         this.setState({
           currentAction: this.dieAction
